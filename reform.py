@@ -14,6 +14,10 @@ with open(input_path, 'r') as handle:
             break
         read_name,seqeunce,_,quality = record
         read_name = read_name[: -11]
+        args = read_name.split(' ')
+        del args[0]
+        read_name = " ".join(args)
+        read_name = "@{0}".format(read_name)
         read_name = read_name.replace('_',"\tBC:Z:") + '-1'
         newfile.write("\n".join([read_name,seqeunce,"+",quality]))
         newfile.write("\n")
